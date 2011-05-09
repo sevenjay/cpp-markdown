@@ -1,0 +1,59 @@
+<h1>General</h1>
+<p>Cpp-Markdown is a freely-available Markdown text-to-HTML translator, written in C++, intended for integration into C++ programs rather than for use in web applications.</p>
+
+<p>It differs from other Markdown translators in a few ways:</p>
+
+
+<ul>
+<li><p>It's written in C++, making full use of C++ constructs such as classes, inheritance, I/O streams, and namespaces. This means that you get the full speed advantages of a compiled language, as well as easier integration into C++ programs.</p>
+
+</li>
+<li><p>It's a more accurate implementation of the <a href="http://daringfireball.net/projects/markdown/syntax">Markdown specification</a> than most of the currently-available ones. Its first release passes all 23 tests in the Markdown test suite, and 12 of the 17 tests in the PHP Markdown test suite, of <a href="http://six.pairlist.net/pipermail/markdown-discuss/2007-September/000815.html">MDTest 1.1</a>.</p>
+
+</li>
+<li><p>It is fully os-independent. It understands files that use DOS/Windows CR/NL line endings, Mac OSX CR line endings, or UNIX/Linux NL line endings. It is also designed to work with UTF-8 files, and can be extended to work with Unicode (UTF-16/UCS-2 or UTF-32/UCS-4) files with minimal effort.</p>
+
+</li>
+<li><p>It is <em>not</em> a port of another existing implementation, but was written from scratch. That means you can use it in your own programs without worrying about any license other than Cpp-Markdown's own very permissive one.</p>
+
+</li>
+</ul>
+
+<p>This README file is written in Markdown format, and an HTML version (translated by the stand-alone Cpp-Markdown program) is provided as well, so you can see exactly what it does.</p>
+
+<hr/><h1>Why?</h1>
+<p>I originally wrote it because I wanted to use the Markdown format in one of my own C++ projects, and there was no existing C or C++ implementation that I liked. I'm releasing it as open-source because Markdown is an excellent and well-thought-out format, and I'd like to see it available in more programs.</p>
+
+<hr/><h1>Requirements</h1>
+<p>Cpp-Markdown is designed for integration into C++ programs. For that purpose, you only need a C++ compiler, a few of the header-only libraries from the <a href="http://www.boost.org/">Boost project</a> (version 1.36 or later, due to the use of the <code>Boost::Unordered</code> library), and a compiled version of the <code>Boost::Regex</code> library. I tried writing it without using regular expressions, but it was a <em>lot</em> harder, and I gave up after a few days.</p>
+
+<p>I've also provided the small <code>main.cpp</code> file that I use for testing it, and the <code>Boost::Jam</code> file that will compile it into an executable. With those, you can create a stand-alone program that can read text from the standard input or a file and write the corresponding HTML to standard output.</p>
+
+<hr/><h1>Usage</h1>
+<h2>Integration into C++ programs</h2>
+<p>To use it in a C++ program:</p>
+
+
+<ul>
+<li>Add <code>markdown.cpp</code> and <code>markdown-tokens.cpp</code> to your project (as well as the <code>Boost::Regex</code> library, if you don't already have it);</li>
+<li>Add an <code>#include &quot;markdown.h&quot;</code> line in the file(s) you want to use it in.</li>
+<li>Create a <code>markdown::Document</code> object, feed it some input via <code>string</code>s or <code>istream</code>s through one of the <code>read</code> functions, and call the member function <code>write</code> to write out the HTML code to an <code>ostream</code>. (See the included <code>main.cpp</code> for a working example.)</li>
+</ul>
+
+<p>It's that simple. The stream design means that you can read from an in-memory string, the keyboard, a file, or any other input device with ease, and write to a file, an in-memory string, or any output device just as simply.</p>
+
+<h2>Stand-alone program</h2>
+<p>The stand-alone <code>cpp-markdown</code> program is very minimal. Run it with the <code>-?</code> or <code>--help</code> parameters to get usage help.</p>
+
+<hr/><h1>History</h1>
+<h2>Version 1.00 (February 20th, 2009)</h2>
+<p>First public release.</p>
+
+<hr/><h1>To-Do</h1>
+<p>I don't expect that this library will require many updates. It's pretty close to done already, at least until a new version of the Markdown format is released.</p>
+
+<p>There <em>are</em> a few things that I'd like to add to it, as time permits, such as explicit <code>wchar_t</code> support (for Unicode). I'd also like to improve its score on the PHP-Markdown test suite, for those last few tests that it presently fails. There are at least two tests that it will never fully pass (because it handles invalid nesting differently than PHP-Markdown does), but the others should be passable with a little more tweaking.</p>
+
+<hr/><h1>License</h1>
+<p>Cpp-Markdown is released under the MIT license. See the LICENSE.TXT file that accompanies this distribution for all the details that only a lawyer could love, but the general idea is that you can do pretty much anything you want with the code except claim that it's your own work.</p>
+

@@ -1,0 +1,18 @@
+
+lib boost_regex : : <name>boost_regex-gcc41-mt-d <toolset>gcc <variant>debug   ;
+lib boost_regex : : <name>boost_regex-gcc41-mt   <toolset>gcc <variant>release ;
+
+alias regex         : boost_regex           : <link>static ;
+
+exe cpp-markdown
+	:
+		# Source code files
+		main.cpp markdown.cpp markdown-tokens.cpp
+
+		# Boost libraries
+		regex
+	:
+		# For GCC only
+		<cflags>-fno-strict-aliasing
+	;
+
