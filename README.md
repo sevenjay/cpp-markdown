@@ -23,7 +23,7 @@ I've also provided the small `main.cpp` file that I use for testing it, and the 
 #### Integration into C++ programs
 To use it in a C++ program:
   - Add `markdown.cpp` and `markdown-tokens.cpp` to your project (as well as the `Boost::Regex` library, if you don't already have it).    
-  - Add an `#include &quot;markdown.h&quot;` line in the file(s) you want to use it in.    
+  - Add an `#include "markdown.h"` line in the file(s) you want to use it in.    
   - Create a `markdown::Document` object, feed it some input via `string`s or  `istream`s through one of the `read` functions, and call the member function `write` to write out the HTML code to an `ostream`. (See the included `main.cpp` for a working example.)    
     
 It's that simple. The stream design means that you can read from an in-memory string, the keyboard, a file, or any other input device with ease, and write to a file, an in-memory string, or any output device just as simply.    
