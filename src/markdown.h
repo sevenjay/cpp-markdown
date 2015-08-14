@@ -17,6 +17,8 @@
 #include <boost/optional.hpp>
 #include <boost/unordered_map.hpp>
 
+#define MD_UNUSED(x) (void)x
+
 namespace markdown {
 
 	using boost::optional;
@@ -38,10 +40,10 @@ namespace markdown {
 		// You can call read() functions multiple times before writing if
 		// desirable. Once the document has been processed for writing, it can't
 		// accept any more input.
-		bool read(const std::string&);
-		bool read(std::istream&);
-		void write(std::ostream&);
-		void writeTokens(std::ostream&); // For debugging
+		bool read(const std::string& src);
+		bool read(std::istream& in);
+		void write(std::ostream& out);
+		void writeTokens(std::ostream& out); // For debugging
 
 		// The class is marked noncopyable because it uses reference-counted
 		// links to things that get changed during processing. If you want to

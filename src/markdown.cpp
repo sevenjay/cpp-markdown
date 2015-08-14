@@ -566,6 +566,8 @@ optional<TokenPtr> parseHeader(CTokenGroupIter& i, CTokenGroupIter end) {
 }
 
 optional<TokenPtr> parseHorizontalRule(CTokenGroupIter& i, CTokenGroupIter end) {
+	MD_UNUSED(end);
+
 	if (!(*i)->isBlankLine() && (*i)->text() && (*i)->canContainMarkup()) {
 		static const boost::regex cHorizontalRules("^ {0,3}((?:-|\\*|_) *){3,}$");
 		const std::string& line=*(*i)->text();

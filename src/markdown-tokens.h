@@ -43,7 +43,7 @@ class Token {
 	public:
 	Token() { }
 
-	virtual void writeAsHtml(std::ostream&) const=0;
+	virtual void writeAsHtml(std::ostream& out) const=0;
 	virtual void writeAsOriginal(std::ostream& out) const { writeAsHtml(out); }
 	virtual void writeToken(std::ostream& out) const=0;
 	virtual void writeToken(size_t indent, std::ostream& out) const {
@@ -66,8 +66,8 @@ class Token {
 	virtual bool inhibitParagraphs() const { return false; }
 
 	protected:
-	virtual void preWrite(std::ostream& out) const { }
-	virtual void postWrite(std::ostream& out) const { }
+	virtual void preWrite(std::ostream& out) const { MD_UNUSED(out); }
+	virtual void postWrite(std::ostream& out) const { MD_UNUSED(out); }
 };
 
 namespace token {
