@@ -42,6 +42,7 @@ class LinkIds {
 class Token {
 	public:
 	Token() { }
+	virtual ~Token() { }
 
 	virtual void writeAsHtml(std::ostream&) const=0;
 	virtual void writeAsOriginal(std::ostream& out) const { writeAsHtml(out); }
